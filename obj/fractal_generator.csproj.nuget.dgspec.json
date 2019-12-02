@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\terminal\\Documents\\fractal_generator\\fractal_generator\\fractal_generator\\fractal_generator.csproj": {}
+    "C:\\Users\\terminal\\Desktop\\fractal_generator\\fractal_generator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\terminal\\Documents\\fractal_generator\\fractal_generator\\fractal_generator\\fractal_generator.csproj": {
+    "C:\\Users\\terminal\\Desktop\\fractal_generator\\fractal_generator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\terminal\\Documents\\fractal_generator\\fractal_generator\\fractal_generator\\fractal_generator.csproj",
+        "projectUniqueName": "C:\\Users\\terminal\\Desktop\\fractal_generator\\fractal_generator.csproj",
         "projectName": "fractal_generator",
-        "projectPath": "C:\\Users\\terminal\\Documents\\fractal_generator\\fractal_generator\\fractal_generator\\fractal_generator.csproj",
+        "projectPath": "C:\\Users\\terminal\\Desktop\\fractal_generator\\fractal_generator.csproj",
         "packagesPath": "C:\\Users\\terminal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\terminal\\Documents\\fractal_generator\\fractal_generator\\fractal_generator\\obj\\",
+        "outputPath": "C:\\Users\\terminal\\Desktop\\fractal_generator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\terminal\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -37,6 +37,12 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.18, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

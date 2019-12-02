@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using fractal_generator.Database;
 
 namespace fractal_generator
 {
@@ -24,8 +25,9 @@ namespace fractal_generator
     {
         public MainWindow()
         {
-            InitializeComponent();
-            text.Text = "what is wrong?";
+            // InitializeComponent();
+            DB.ExecuteSql("select * from test");
+ //           text.Text = "what is wrong?";
             //CreateMandleBot();
             /*
             DrawPoint(1, 1, 1);
@@ -41,7 +43,7 @@ namespace fractal_generator
             */
 
             //            DrawListIteration(CreateMandleBot());
-            DrawSierpinskiGasket(SierpinskiGasket());
+//            DrawSierpinskiGasket(SierpinskiGasket());
 
         }
 
