@@ -5626,19 +5626,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\terminal\\.nuget\\packages\\": {}
+    "C:\\Users\\sadat\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\terminal\\Desktop\\fractal_generator\\fractal_generator.csproj",
+      "projectUniqueName": "C:\\Users\\sadat\\Desktop\\fractal_generator\\fractal_generator.csproj",
       "projectName": "fractal_generator",
-      "projectPath": "C:\\Users\\terminal\\Desktop\\fractal_generator\\fractal_generator.csproj",
-      "packagesPath": "C:\\Users\\terminal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\terminal\\Desktop\\fractal_generator\\obj\\",
+      "projectPath": "C:\\Users\\sadat\\Desktop\\fractal_generator\\fractal_generator.csproj",
+      "packagesPath": "C:\\Users\\sadat\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sadat\\Desktop\\fractal_generator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\terminal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sadat\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
