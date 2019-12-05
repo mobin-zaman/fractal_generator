@@ -60,6 +60,10 @@ namespace fractal_generator
 
         }
 
+
+
+
+        /*   
         void DrawListRandom(List<List<int>> pixelList)
         {
             DispatcherTimer t = new DispatcherTimer();
@@ -177,7 +181,7 @@ namespace fractal_generator
             });
         }
 
-        */
+        
         List<List<int>> CreateMandleBot()
 
         {
@@ -264,6 +268,7 @@ namespace fractal_generator
             }
             return tupleList;
         }
+        */
     }
 
 }
