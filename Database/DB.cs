@@ -20,7 +20,6 @@ namespace fractal_generator.Database
                 string query = sql;
                 var cmd = new MySqlCommand(query, dbCon.Connection);
                 reader = cmd.ExecuteReader();
-                dbCon.Close();
             }
             return reader;
         }

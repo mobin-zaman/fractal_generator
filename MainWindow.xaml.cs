@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using fractal_generator.Database;
+using fractal_generator.Model;
 
 namespace fractal_generator
 {
@@ -25,9 +26,21 @@ namespace fractal_generator
     {
         public MainWindow()
         {
+
+            var reader = DB.ExecuteSql("select * from fractal");
+
+            List<Fractal> fractalList = Fractal.GetFractalList(reader);
+
+            foreach (var x in fractalList)
+            {
+                Console.WriteLine("ID: "+x.getId());
+                Console.WriteLine("Name: "+x.getName());
+                Console.WriteLine("Description: "+x.getDescription());
+                Console.WriteLine("url: "+x.getThumbUrl());
+                Console.WriteLine();
+            }
             // InitializeComponent();
-            DB.ExecuteSql("select * from test");
- //           text.Text = "what is wrong?";
+            //           text.Text = "what is wrong?";
             //CreateMandleBot();
             /*
             DrawPoint(1, 1, 1);
