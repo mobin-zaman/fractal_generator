@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2019 at 04:33 AM
+-- Generation Time: Dec 05, 2019 at 05:07 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -31,9 +31,64 @@ SET time_zone = "+00:00";
 CREATE TABLE `fractal` (
   `id` int(200) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `description` varchar(900) NOT NULL,
-  `thumb_img_url` varchar(200) NOT NULL
+  `description` varchar(500) NOT NULL,
+  `thumb_url` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `image`
+--
+
+CREATE TABLE `image` (
+  `id` int(200) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `fractal_id` int(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `fractal`
+--
+ALTER TABLE `fractal`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_fractal_img` (`fractal_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `fractal`
+--
+ALTER TABLE `fractal`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `image`
+--
+ALTER TABLE `image`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `image`
+--
+ALTER TABLE `image`
+  ADD CONSTRAINT `fk_fractal_img` FOREIGN KEY (`fractal_id`) REFERENCES `fractal` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
