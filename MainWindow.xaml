@@ -11,7 +11,16 @@
             <ColumnDefinition Width="439*"/>
             <ColumnDefinition Width="244*"/>
         </Grid.ColumnDefinitions>
-        <Canvas Name="canvas" Background="Red" Grid.ColumnSpan="2"></Canvas>
-        <TextBlock Name="text" Grid.ColumnSpan="2"></TextBlock>
+
+        <ListView x:Name="lv"> <!-- this defines the name to be used in the controller -->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Name}"/>
+                        <Image Source="{Binding ImageData}"></Image>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>

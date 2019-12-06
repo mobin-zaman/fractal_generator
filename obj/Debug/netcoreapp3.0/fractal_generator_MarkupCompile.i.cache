@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_0
 C:\Users\terminal\Desktop\fractal_generator\App.xaml
-11151548125
+3-629770129
 
-8-117276394
+1066505497
 198-146652788
-MainWindow.xaml;
+ActionWindow.xaml;DescriptionWindow.xaml;MainWindow.xaml;
 
-False
+True
 

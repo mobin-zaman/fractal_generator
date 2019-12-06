@@ -63,3 +63,7 @@ C:\Users\sadat\Desktop\fractal_generator\obj\Debug\netcoreapp3.0\fractal_generat
 C:\Users\sadat\Desktop\fractal_generator\obj\Debug\netcoreapp3.0\fractal_generator.csproj.CopyComplete
 C:\Users\sadat\Desktop\fractal_generator\obj\Debug\netcoreapp3.0\fractal_generator.dll
 C:\Users\sadat\Desktop\fractal_generator\obj\Debug\netcoreapp3.0\fractal_generator.pdb
+C:\Users\terminal\Desktop\fractal_generator\obj\Debug\netcoreapp3.0\ActionWindow.g.cs
+C:\Users\terminal\Desktop\fractal_generator\obj\Debug\netcoreapp3.0\DescriptionWindow.g.cs
+C:\Users\terminal\Desktop\fractal_generator\obj\Debug\netcoreapp3.0\ActionWindow.baml
+C:\Users\terminal\Desktop\fractal_generator\obj\Debug\netcoreapp3.0\DescriptionWindow.baml
