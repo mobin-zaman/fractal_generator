@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using fractal_generator.Database;
 
 namespace fractal_generator.Model
 {
@@ -70,8 +71,11 @@ namespace fractal_generator.Model
             return this.GetParent(dir.Parent.FullName, parentName);
         }
 
-        public  static List<Fractal> GetFractalList(MySqlDataReader reader)
+        public  static List<Fractal> GetFractalList()
         {
+
+            string sql = "select * from fractal"; //TODO: see the difference between string and String
+            var reader = DB.ExecuteSql(sql);
             List<Fractal> fractalList = new List<Fractal>();
             while (reader.Read())
             {

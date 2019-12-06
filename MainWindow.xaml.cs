@@ -27,9 +27,8 @@ namespace fractal_generator
         public MainWindow()
         {
 
-            var reader = DB.ExecuteSql("select * from fractal");
 
-            List<Fractal> fractalList = Fractal.GetFractalList(reader);
+            List<Fractal> fractalList = Fractal.GetFractalList();
 
             foreach (var x in fractalList)
             {
@@ -63,7 +62,6 @@ namespace fractal_generator
 
 
 
-        /*   
         void DrawListRandom(List<List<int>> pixelList)
         {
             DispatcherTimer t = new DispatcherTimer();
@@ -167,20 +165,6 @@ namespace fractal_generator
        });
          }
 
-        /*
-        void TestThread()
-        {
-            Thread thread = new Thread(new ThreadStart(CreateMandleBot));
-            thread.Start();
-        }
-        async void TestTask()
-        {
-            await Task.Run(() =>
-            {
-                CreateMandleBot();
-            });
-        }
-
         
         List<List<int>> CreateMandleBot()
 
@@ -268,7 +252,6 @@ namespace fractal_generator
             }
             return tupleList;
         }
-        */
     }
 
 }

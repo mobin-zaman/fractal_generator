@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace fractal_generator
+namespace fractal_generator.Fractals
 {
     public class Complex
     {
