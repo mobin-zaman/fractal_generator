@@ -11,13 +11,12 @@
             <ColumnDefinition Width="439*"/>
             <ColumnDefinition Width="244*"/>
         </Grid.ColumnDefinitions>
-
-        <ListView x:Name="lv"> <!-- this defines the name to be used in the controller -->
+        <ListView x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" >
 						<TextBlock Text="{Binding Name}"/>
-                        <Image Source="{Binding ImageData}"></Image>
+                        <Image Source="{Binding ImageData}" Height="200" Width="200"></Image>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

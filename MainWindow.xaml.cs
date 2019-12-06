@@ -34,41 +34,44 @@ namespace fractal_generator
             lv.ItemsSource = fractalList;
 
 
-            /*
-            foreach (var x in fractalList)
-            {
-                Console.WriteLine("ID: "+x.getId());
-               Console.WriteLine("Name: "+x.getName());
-                Console.WriteLine("Description: "+x.getDescription());
-                Console.WriteLine("url: "+x.getThumbUrl());
-                Console.WriteLine();
-            }
-            */
-            //           text.Text = "what is wrong?";
-            //CreateMandleBot();
-            /*
-            DrawPoint(1, 1, 1);
-            DrawPoint(5, 3, 1);
-            DrawPoint(8, 4, 0);
-            DrawPoint(2, 9, 1);
-            DrawPoint(10, 1, 1);
-            DrawPoint(1, 100, 1);
-            DrawPoint(-123, 3, 1);
-            DrawPoint(-8, 40, 0);
-            DrawPoint(23, -9, 1);
-            DrawPoint(101, 1, 1);
-            */
-
-            //            DrawListIteration(CreateMandleBot());
-//            DrawSierpinskiGasket(SierpinskiGasket());
-
         }
 
 
-
-
-
- 
+        private void Lv_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListBox listbox = sender as ListBox;
+            Fractal fractal = (Fractal) listbox.SelectedItem;
+            new DescriptionWindow(fractal).ShowDialog();
+        }
     }
 
 }
+
+/*
+foreach (var x in fractalList)
+{
+    Console.WriteLine("ID: "+x.getId());
+   Console.WriteLine("Name: "+x.getName());
+    Console.WriteLine("Description: "+x.getDescription());
+    Console.WriteLine("url: "+x.getThumbUrl());
+    Console.WriteLine();
+}
+*/
+//           text.Text = "what is wrong?";
+//CreateMandleBot();
+/*
+DrawPoint(1, 1, 1);
+DrawPoint(5, 3, 1);
+DrawPoint(8, 4, 0);
+DrawPoint(2, 9, 1);
+DrawPoint(10, 1, 1);
+DrawPoint(1, 100, 1);
+DrawPoint(-123, 3, 1);
+DrawPoint(-8, 40, 0);
+DrawPoint(23, -9, 1);
+DrawPoint(101, 1, 1);
+*/
+
+//            DrawListIteration(CreateMandleBot());
+//            DrawSierpinskiGasket(SierpinskiGasket());
+

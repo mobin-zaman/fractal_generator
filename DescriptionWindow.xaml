@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="DescriptionWindow" Height="450" Width="800">
     <Grid>
-        
+       <TextBlock Name="text">Does this thing work?</TextBlock> 
     </Grid>
 </Window>

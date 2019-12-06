@@ -8,7 +8,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using fractal_generator.Model;
 
 namespace fractal_generator
 {
@@ -17,9 +19,15 @@ namespace fractal_generator
     /// </summary>
     public partial class DescriptionWindow : Window
     {
-        public DescriptionWindow()
+
+        public DescriptionWindow(Fractal fractal)
         {
             InitializeComponent();
+            text.Text = fractal.Name;
+
+
         }
+
+
     }
 }

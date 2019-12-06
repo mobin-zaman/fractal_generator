@@ -10,7 +10,7 @@ using fractal_generator.Database;
 
 namespace fractal_generator.Model
 {
-    class Fractal
+    public class Fractal
     {
         private int id;
         private String name;
@@ -40,7 +40,7 @@ namespace fractal_generator.Model
 
         public String Description
         {
-            get { return this.Description; }
+            get { return this.description; }
             set { this.description = value; }
         }
 
