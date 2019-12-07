@@ -18,12 +18,12 @@ namespace fractal_generator.Model
         private String thumbUrl;
         private BitmapImage imageData;
 
-        public Fractal(MySqlDataReader reader)
+        public Fractal(List<String> reader)
         {
-            id = Int32.Parse(reader.GetString(0));
-            name = reader.GetString(1);
-            description = reader.GetString(2);
-            thumbUrl = reader.GetString(3);
+            id = Int32.Parse(reader[0]);
+            name = reader[1];
+            description = reader[2];
+            thumbUrl = reader[3];
         }
 
         public int Id
@@ -67,6 +67,15 @@ namespace fractal_generator.Model
 
         }
 
+        public String GetImageUrl(String imageUrl)
+        {
+            String parentPath = GetParent(Directory.GetCurrentDirectory(), "fractal_generator");
+            string[] paths = {parentPath, "Model", "Images", imageUrl};
+            String imagePath = Path.Combine(paths);
+            return imagePath;
+
+        }
+
         public string GetParent(string path, string parentName) //needed for thumburl
             {
             var dir = new DirectoryInfo(path);
@@ -89,13 +98,18 @@ namespace fractal_generator.Model
             return new BitmapImage(new Uri(getThumbUrl()));
         }
 
+        private BitmapImage LoadImage(Uri u)
+        {
+            return new BitmapImage(u);
+        }
+
         public  static List<Fractal> GetFractalList()
         {
 
-            string sql = "select * from fractal"; //TODO: see the difference between string and String
-            var reader = DB.ExecuteSql(sql);
+            //TODO: see the difference between string and String
+            List<List<String>> listString =  DB.ExecuteFractalListSql();
             List<Fractal> fractalList = new List<Fractal>();
-            while (reader.Read())
+            foreach (var reader in listString )
             {
                 Fractal f = new Fractal(reader);
                 fractalList.Add(f);
@@ -103,6 +117,22 @@ namespace fractal_generator.Model
 
             return fractalList;
             
+        }
+
+        public static List<BitmapImage> GetImagesUriList(Fractal f)
+        {
+            List<BitmapImage> bitmapList = new List<BitmapImage>();
+
+
+            var imageUrlList = DB.ExecuteImageUrlSql(f);
+
+            foreach (var reader in imageUrlList)
+            {
+                BitmapImage bm = f.LoadImage(new Uri(f.GetImageUrl(reader)));
+                bitmapList.Add(bm);
+            }
+
+            return bitmapList;
         }
 
         //public static Uri 

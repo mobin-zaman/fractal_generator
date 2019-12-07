@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="DescriptionWindow" Height="450" Width="800">
     <Grid>
-       <TextBlock Name="text">Does this thing work?</TextBlock> 
+        <StackPanel Orientation="Vertical">
+        <TextBlock Name="title"></TextBlock> <!-- this will be the header of the page-->
+        <TextBlock Name="description"></TextBlock>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Image Name="img1" Height="200" Width="200"></Image>
+            <Image Name="img2" Height="200" Width="200"></Image>
+            <Image Name="img3" Height="200" Width="200"></Image>
+        </StackPanel>
     </Grid>
 </Window>

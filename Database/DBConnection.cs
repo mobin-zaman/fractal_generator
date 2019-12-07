@@ -8,7 +8,7 @@ namespace fractal_generator.Database
 {
     public class DBConnection
     {
-        private DBConnection()
+        public DBConnection()
         {
         }
 
