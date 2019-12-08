@@ -40,6 +40,11 @@ namespace fractal_generator
             {
                 DrawSierpinskiGasket(FractalPixelGenerator.CreateSierpinskiGasket());
             }
+
+            if (id == 3)
+            {
+                DrawListIteration(FractalPixelGenerator.CreateJuliaSet());
+            }
         }
         void DrawPoint(int x, int y, int choice) //blue background, yellow middle purple dots
         {
@@ -150,6 +155,27 @@ namespace fractal_generator
 
             return randomList;
           }
+
+         void DrawListIteration(List<List<int>> pixelList)
+        {
+            DispatcherTimer t = new DispatcherTimer();
+            t.Tick += t_drawPoints;
+            t.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            t.Start();
+            
+               void t_drawPoints(object sender, EventArgs e)
+            {
+                for (int i = 0; i < 1000; i++) //need separate function for mandlebot
+                {
+                    var firstElement = pixelList[0];
+                    DrawPoint(firstElement[0], firstElement[1], firstElement[2]);
+                    pixelList.RemoveAt(0);
+                }
+
+            }
+        }
          }
+
+       
 
 }
