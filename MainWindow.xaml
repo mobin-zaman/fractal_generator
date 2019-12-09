@@ -7,16 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1366" Width="768">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="439*"/>
-            <ColumnDefinition Width="244*"/>
-        </Grid.ColumnDefinitions>
-        <ListView x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ListView  x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" >
-						<TextBlock Text="{Binding Name}"/>
-                        <Image Source="{Binding ImageData}" Height="200" Width="200"></Image>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" >
+                        
+                        <Image Source="{Binding ImageData}" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
