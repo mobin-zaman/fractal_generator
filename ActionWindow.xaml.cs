@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using fractal_generator.Model;
+using fractal_generator.Fractals;
 
 namespace fractal_generator
 {
@@ -25,11 +26,20 @@ namespace fractal_generator
         {
             this.fractal = fractal;
             InitializeComponent();
+            ExecuteAssociatedFunction(fractal.Id);
         }
 
         private void ExecuteAssociatedFunction(int id)
         {
-            
+            if (id == 1)
+            {
+                DrawListRandom(FractalPixelGenerator.CreateMandleBot());
+            }
+
+            if (id == 2)
+            {
+                DrawSierpinskiGasket(FractalPixelGenerator.CreateSierpinskiGasket());
+            }
         }
         void DrawPoint(int x, int y, int choice) //blue background, yellow middle purple dots
         {
@@ -104,5 +114,42 @@ namespace fractal_generator
 
             }
         }
-    }
+        void DrawListRandom(List<List<int>> pixelList)
+        {
+            DispatcherTimer t = new DispatcherTimer();
+            pixelList = ShuffleList(pixelList);
+
+            t.Tick += t_drawPoints;
+            t.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            t.Start();
+
+
+            void t_drawPoints(object sender, EventArgs e)
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    var randomElement = pixelList[0];
+                    DrawPoint(randomElement[0], randomElement[1], randomElement[2]);
+                    pixelList.RemoveAt(0);
+                }
+
+            }
+        }
+        private List<E> ShuffleList<E>(List<E> inputList)
+        {
+            List<E> randomList = new List<E>();
+
+            Random r = new Random();
+            int randomIndex = 0;
+            while (inputList.Count > 0)
+            {
+                randomIndex = r.Next(0, inputList.Count); //Choose a random object in the list
+                randomList.Add(inputList[randomIndex]); //add it to the new, random list
+                inputList.RemoveAt(randomIndex); //remove to avoid duplicates
+            }
+
+            return randomList;
+          }
+         }
+
 }

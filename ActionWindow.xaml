@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="ActionWindow" Height="450" Width="800">
     <Grid>
-        
+       <Canvas Name="canvas"></Canvas> 
     </Grid>
 </Window>
