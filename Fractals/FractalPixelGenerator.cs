@@ -57,40 +57,93 @@ namespace fractal_generator.Fractals
             List<List<int>> tupleList = new List<List<int>> { };
             for (int y = 0; y < WIDTH; y++)
             {
-                for(int x=0; x< HEIGHT; x++)
+                for (int x = 0; x < HEIGHT; x++)
                 {
-                    if((x & (y-x)) ==0)
+                    if ((x & (y - x)) == 0)
                     {
                         //DrawPoint(x+158-y/2, y+30, 1);
-                        tupleList.Add(new List<int> { x + ((WIDTH/2)+30) - y / 2, y + 30, 1 });
+                        tupleList.Add(new List<int> {x + ((WIDTH / 2) + 30) - y / 2, y + 30, 1});
                     }
                 }
             }
+
             return tupleList;
         }
+
+
+        public static List<List<int>> CreateJuliaSet()
+        {
+            List<List<int>> pixelList = new List<List<int>>();
+            int left = 20;
+            int w = 300;
+            int s = w / 3;
+            int orig = left + w / 2;
+            double xc = -1;
+            double yc = -1;
+
+
+            //    drawLine(1);
+            // //    drawline(2);
+
+            double xn = 0.25;
+            double yn = 0;
+
+            for (int i = 0; i < 5000; i++)
+            {
+                double a = xn - xc;
+                double b = yn - yc;
+                if (a == 0)
+                {
+                    xn = Math.Sqrt(Math.Abs(b) / 2);
+                    if (xn > 0)
+                    {
+                        yn = b / (2 * xn);
+                    }
+                    else
+                    {
+                        yn = 0;
+                    }
+                }
+                else if (a > 0)
+                {
+                    xn = Math.Sqrt((Math.Sqrt(a*a+b*b)+a)/2);
+                    yn = b / (2 * xn);
+                }
+                else
+                {
+                    xn = Math.Sqrt((Math.Sqrt(a*a+b*b)-a)/2);
+                    yn = b / (2 * yn);
+                }
+
+                if (i == 0)
+                {
+                    xn += .5;
+                }
+
+                if (new Random().Next() >= 0.5) //TODO: need to check the range of the random in java and c#
+                {
+                    xn = -xn;
+                    yn = -yn;
+                }
+
+                pixelList.Add(new List<int>{(int)(xn*s+orig), (int)(-yn*xn+orig), 1});
+            }
+
+            return pixelList;
+        }
+
+    }
+
+
+
+
+}
         
         
         
     
         /*
-        void DrawListIteration(List<List<int>> pixelList)
-        {
-            DispatcherTimer t = new DispatcherTimer();
-            t.Tick += t_drawPoints;
-            t.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            t.Start();
-            
-               void t_drawPoints(object sender, EventArgs e)
-            {
-                for (int i = 0; i < 1000; i++)
-                {
-                    var firstElement = pixelList[0];
-                    DrawPoint(firstElement[0], firstElement[1], firstElement[2]);
-                    pixelList.RemoveAt(0);
-                }
 
-            }
-        }
         */
 
         
@@ -101,5 +154,3 @@ namespace fractal_generator.Fractals
         
 
        
-    }
-}
