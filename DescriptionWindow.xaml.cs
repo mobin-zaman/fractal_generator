@@ -19,10 +19,13 @@ namespace fractal_generator
     /// </summary>
     public partial class DescriptionWindow : Window
     {
+        private Fractal fractal;
 
         public DescriptionWindow(Fractal fractal)
         {
             InitializeComponent();
+
+            this.fractal = fractal;
 
             title.Text = fractal.Name;
             description.Text = fractal.Description;
@@ -38,5 +41,9 @@ namespace fractal_generator
         }
 
 
+        private void ActionButton_OnClick_(object sender, RoutedEventArgs e)
+        {
+            new ActionWindow(fractal).ShowDialog();
+        }
     }
 }

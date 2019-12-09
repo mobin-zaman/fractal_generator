@@ -18,5 +18,9 @@
             <Image Name="img2" Height="200" Width="200"></Image>
             <Image Name="img3" Height="200" Width="200"></Image>
         </StackPanel>
+        <StackPanel Orientation="Vertical">
+            <Button Name="actionButton" Height="40" Width="120" Content="Action" Click="ActionButton_OnClick_">
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
