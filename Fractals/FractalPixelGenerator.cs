@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -23,8 +24,8 @@ namespace fractal_generator.Fractals
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    double a = (double) (x - (Width / 2)) / (double) (Width / 4);
-                    double b = (double) (y - (Height / 2)) / (double) (Height / 4);
+                    double a = (double)(x - (Width / 2)) / (double)(Width / 4);
+                    double b = (double)(y - (Height / 2)) / (double)(Height / 4);
 
                     Complex c = new Complex(a, b);
                     Complex z = new Complex(0, 0);
@@ -41,7 +42,7 @@ namespace fractal_generator.Fractals
 
                     // bm.SetPixel(x, y, it < 100 ? Color.Black : Color.White);
                     int color_code = ((it < 100 ? 1 : 0));
-                    tupleList.Add(new List<int> {x, y, color_code});
+                    tupleList.Add(new List<int> { x, y, color_code });
 
                 }
             }
@@ -62,7 +63,7 @@ namespace fractal_generator.Fractals
                     if ((x & (y - x)) == 0)
                     {
                         //DrawPoint(x+158-y/2, y+30, 1);
-                        tupleList.Add(new List<int> {x + ((WIDTH / 2) + 30) - y / 2, y + 30, 1});
+                        tupleList.Add(new List<int> { x + ((WIDTH / 2) + 30) - y / 2, y + 30, 1 });
                     }
                 }
             }
@@ -79,7 +80,7 @@ namespace fractal_generator.Fractals
             int s = w / 3;
             int orig = left + w / 2;
             double xc = -1;
-            double yc = -1;
+            double yc = 0.1;
 
 
             //    drawLine(1);
@@ -106,12 +107,12 @@ namespace fractal_generator.Fractals
                 }
                 else if (a > 0)
                 {
-                    xn = Math.Sqrt((Math.Sqrt(a*a+b*b)+a)/2);
+                    xn = Math.Sqrt((Math.Sqrt(a * a + b * b) + a) / 2);
                     yn = b / (2 * xn);
                 }
                 else
                 {
-                    xn = Math.Sqrt((Math.Sqrt(a*a+b*b)-a)/2);
+                    xn = Math.Sqrt((Math.Sqrt(a * a + b * b) - a) / 2);
                     yn = b / (2 * yn);
                 }
 
@@ -126,31 +127,69 @@ namespace fractal_generator.Fractals
                     yn = -yn;
                 }
 
-                pixelList.Add(new List<int>{(int)(xn*s+orig), (int)(-yn*xn+orig), 1});
+                Console.WriteLine((int)xn * s + orig + "  " + (int)-yn * xn + orig);
+                pixelList.Add(new List<int> { (int)(xn * s + orig), (int)(-yn * xn + orig), 1 });
             }
 
             return pixelList;
         }
 
+        class CantorSet
+        {
+            private List<List<int>> globalCantorList = new List<List<int>>();
+            private int globalCantorN = 7;
+            private double r = (double)(1 / 3);
+            private Boolean devil = true;
+
+
+            public List<List<int>> CreateCantor()
+            {
+                int left = 30;
+                int w = 300;
+
+
+
+                return globalCantorList;
+            }
+
+            public void Cantor(int level, double x1, double y1, double x2, double y2)
+            {
+                if (level < globalCantorN) //fix variable name 
+                {
+                    double x = ((1 + r) * 1 + (1 - r) * x2) / 2;
+                    double y = (y1 + y2) / 2;
+
+                    Cantor(level + 1, x1, y1, x, y);
+                    double xx = ((1 - r) * x1 + (1 + r) * x2) / 2;
+
+                    if (devil)
+                    {
+                        globalCantorList.Add(new List<int>() { (int)x, (int)y, (int)xx, (int)y });
+                    }
+                    Cantor(level + 1, xx, y, x2, y2);
+                }
+                else
+                {
+                    globalCantorList.Add(new List<int>() { (int)x1, (int)y1, (int)x2, (int)y2 });
+                }
+            }
+        }
     }
 
 
 
 
 }
-        
-        
-        
-    
-        /*
 
-        */
 
-        
 
-        
-    
 
-        
 
-       
+
+
+
+
+
+
+
+

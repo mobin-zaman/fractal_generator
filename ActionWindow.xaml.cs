@@ -43,55 +43,72 @@ namespace fractal_generator
 
             if (id == 3)
             {
-                DrawListIteration(FractalPixelGenerator.CreateJuliaSet());
+                FractalPixelGenerator.CreateJuliaSet();
             }
         }
         void DrawPoint(int x, int y, int choice) //blue background, yellow middle purple dots
         {
-                     Task.Run(() =>
-                       { 
-                     this.Dispatcher.Invoke(() =>
+            Task.Run(() =>
+              {
+                  this.Dispatcher.Invoke(() =>
 
-             {
-            int dotSize = 2;
-               Ellipse currentDot = new Ellipse();
-               if (choice == 0)
-               {
-                int random = new Random().Next(1);
-                if (random == 0)
-                {
-                    currentDot.Stroke = new SolidColorBrush(Colors.DarkOrange);
-                    currentDot.Fill = new SolidColorBrush(Colors.DarkOrange);
-                }
-                else
-                {
-                    currentDot.Stroke = new SolidColorBrush(Colors.OrangeRed);
-                    currentDot.Fill = new SolidColorBrush(Colors.OrangeRed);
-                }
-               }
-               else
-               {
-                int random = new Random().Next(1);
-                if (random == 0)
-                {
-                    currentDot.Stroke = new SolidColorBrush(Colors.DarkBlue);
-                    currentDot.Fill = new SolidColorBrush(Colors.DarkBlue);
-                }
-                else
-                {
-                    currentDot.Stroke = new SolidColorBrush(Colors.Blue);
-                    currentDot.Fill = new SolidColorBrush(Colors.Blue);
-                } 
-               }
-               currentDot.StrokeThickness = 1;
-                //   Canvas.SetZIndex(currentDot, 3);
-                currentDot.Height = dotSize;
-               currentDot.Width = dotSize;
-               currentDot.Margin = new Thickness(x, y, 0, 0); // Sets the position.
-                canvas.Children.Add(currentDot);
-           });
-       });
-         }
+                   {
+                       Console.WriteLine("DrawPoint() EXECUTE");
+                       int dotSize = 2;
+
+                       Ellipse currentDot = new Ellipse();
+
+                       if (choice == 0)
+                       {
+                           int random = new Random().Next(1);
+                           if (random == 0)
+                           {
+                               currentDot.Stroke = new SolidColorBrush(Colors.DarkOrange);
+                               currentDot.Fill = new SolidColorBrush(Colors.DarkOrange);
+                           }
+                           else
+                           {
+                               currentDot.Stroke = new SolidColorBrush(Colors.OrangeRed);
+                               currentDot.Fill = new SolidColorBrush(Colors.OrangeRed);
+                           }
+                       }
+                       else
+                       {
+                           int random = new Random().Next(1);
+                           if (random == 0)
+                           {
+                               currentDot.Stroke = new SolidColorBrush(Colors.DarkBlue);
+                               currentDot.Fill = new SolidColorBrush(Colors.DarkBlue);
+                           }
+                           else
+                           {
+                               currentDot.Stroke = new SolidColorBrush(Colors.Blue);
+                               currentDot.Fill = new SolidColorBrush(Colors.Blue);
+                           }
+                       }
+                       currentDot.StrokeThickness = 1;
+                       //   Canvas.SetZIndex(currentDot, 3);
+                       currentDot.Height = dotSize;
+                       currentDot.Width = dotSize;
+                       currentDot.Margin = new Thickness(x, y, 0, 0); // Sets the position.
+                       canvas.Children.Add(currentDot);
+                   });
+              });
+        }
+
+        void DrawLine(int x1, int y1, int x2, int y2)
+        {
+            Line line = new Line();
+            line.Stroke = Brushes.Blue;
+
+            line.X1 = x1;
+            line.X2 = x2;
+            line.Y1 = y1;
+            line.Y2 = y2;
+
+            line.StrokeThickness = 2;
+            canvas.Children.Add(line);
+        }
 
         void DrawSierpinskiGasket(List<List<int>> pixelList)
         {
@@ -154,28 +171,37 @@ namespace fractal_generator
             }
 
             return randomList;
-          }
+        }
 
-         void DrawListIteration(List<List<int>> pixelList)
+        void DrawListIteration(List<List<int>> pixelList)
         {
             DispatcherTimer t = new DispatcherTimer();
+
+            Console.WriteLine("LENGTH: " + pixelList.Count);
             t.Tick += t_drawPoints;
             t.Interval = new TimeSpan(0, 0, 0, 0, 1);
             t.Start();
-            
-               void t_drawPoints(object sender, EventArgs e)
+
+            void t_drawPoints(object sender, EventArgs e)
             {
-                for (int i = 0; i < 1000; i++) //need separate function for mandlebot
+                for (int i = 0; i < 10; i++) //need separate function for mandlebot
                 {
-                    var firstElement = pixelList[0];
-                    DrawPoint(firstElement[0], firstElement[1], firstElement[2]);
-                    pixelList.RemoveAt(0);
+                    try
+                    {
+                        var firstElement = pixelList[0];
+                        DrawPoint(firstElement[0], firstElement[1], firstElement[2]);
+                        pixelList.RemoveAt(0);
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                    }
                 }
-
             }
+
         }
-         }
-
-       
-
+    }
 }
+
+
+

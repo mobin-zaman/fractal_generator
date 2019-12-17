@@ -21,11 +21,11 @@ namespace fractal_generator
     {
         private Fractal fractal;
 
-        public DescriptionWindow(Fractal fractal)
+        public DescriptionWindow(Fractal fParam)
         {
             InitializeComponent();
 
-            this.fractal = fractal;
+            this.fractal = fParam;
 
             title.Text = fractal.Name;
             description.Text = fractal.Description;

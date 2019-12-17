@@ -6,24 +6,27 @@
         xmlns:local="clr-namespace:fractal_generator"
         mc:Ignorable="d"
         Title="MainWindow" Height="1366" Width="768">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <ListView  x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" >
-                        
-                        <Image Source="{Binding ImageData}" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
-                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                        
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+
+
+    <DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <ListView  x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" >
+
+                            <Image Source="{Binding ImageData}" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </DockPanel>
 </Window>
