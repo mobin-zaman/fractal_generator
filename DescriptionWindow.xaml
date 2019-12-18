@@ -5,22 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:fractal_generator"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
         Title="DescriptionWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel Orientation="Vertical">
-        <TextBlock Name="title"></TextBlock> <!-- this will be the header of the page-->
-        <TextBlock Name="description"></TextBlock>
+        <Grid.ColumnDefinitions>
 
-        </StackPanel>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
 
-        <StackPanel Orientation="Horizontal">
-            <Image Name="img1" Height="200" Width="200"></Image>
-            <Image Name="img2" Height="200" Width="200"></Image>
-            <Image Name="img3" Height="200" Width="200"></Image>
-        </StackPanel>
-        <StackPanel Orientation="Vertical">
-            <Button Name="actionButton" Height="40" Width="120" Content="Action" Click="ActionButton_OnClick_">
-            </Button>
-        </StackPanel>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="title" FontSize="20" Grid.Row="0" Grid.Column="1"></TextBlock>
+        <!-- this will be the header of the page-->
+        <TextBlock Name="description" FontSize="20" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></TextBlock>
+
+
+        <Image Name="img1" Height="200" Width="200" Grid.Row="2" Grid.Column="0"></Image>
+        <Image Name="img2" Height="200" Width="200" Grid.Row="2" Grid.Column="1"></Image>
+        <Image Name="img3" Height="200" Width="200" Grid.Row="2" Grid.Column="2"></Image>
+        <Button Name="actionButton" Height="40" Width="120" Content="Action" Click="ActionButton_OnClick_" Grid.Row="3" Grid.Column="2">
+        </Button>
     </Grid>
 </Window>

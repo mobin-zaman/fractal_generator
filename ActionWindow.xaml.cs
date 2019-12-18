@@ -43,7 +43,8 @@ namespace fractal_generator
 
             if (id == 3)
             {
-                FractalPixelGenerator.CreateJuliaSet();
+                //FractalPixelGenerator.CreateJuliaSet(); FIXME: for the time being it being tested for CreateCantor(), needs to changed;
+                DrawCantorSet(new FractalPixelGenerator.CantorSet().CreateCantor());
             }
         }
         void DrawPoint(int x, int y, int choice) //blue background, yellow middle purple dots
@@ -102,11 +103,11 @@ namespace fractal_generator
             line.Stroke = Brushes.Blue;
 
             line.X1 = x1;
-            line.X2 = x2;
             line.Y1 = y1;
+            line.X2 = x2;
             line.Y2 = y2;
 
-            line.StrokeThickness = 2;
+            line.StrokeThickness = 1;
             canvas.Children.Add(line);
         }
 
@@ -199,6 +200,15 @@ namespace fractal_generator
                 }
             }
 
+        }
+
+        public void DrawCantorSet(List<List<int>> pixelList) //these are actually lines co-ordinates
+        {
+            foreach (var x in pixelList)
+            {
+                DrawLine(x[0], x[1], x[2], x[3]);
+                Console.WriteLine(x[0] + "+" + x[1] + "+" + x[2] + "+" + x[3]);
+            }
         }
     }
 }

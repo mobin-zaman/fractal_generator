@@ -134,29 +134,31 @@ namespace fractal_generator.Fractals
             return pixelList;
         }
 
-        class CantorSet
+        public class CantorSet
         {
-            private List<List<int>> globalCantorList = new List<List<int>>();
-            private int globalCantorN = 7;
+            private List<List<int>> cantorList = new List<List<int>>();
+            private int n = 20;
             private double r = (double)(1 / 3);
             private Boolean devil = true;
+            private int left = 30;
+            private int w = 600;
 
 
             public List<List<int>> CreateCantor()
             {
-                int left = 30;
-                int w = 300;
 
+                Cantor(1, left, left + (1 + (devil ? 1 : 0)) * w / 2, left + w, left + (1 - (devil ? 1 : 0)) * w / 2);
+                double d = r < 1 ? Math.Log(2) / Math.Log(2 / (1 - r)) : 0;
+                Console.WriteLine("Dimension of Cantor set: " + d, 10, 20);
 
-
-                return globalCantorList;
+                return cantorList;
             }
 
             public void Cantor(int level, double x1, double y1, double x2, double y2)
             {
-                if (level < globalCantorN) //fix variable name 
+                if (level < n) //fix variable name 
                 {
-                    double x = ((1 + r) * 1 + (1 - r) * x2) / 2;
+                    double x = ((1 + r) * x1 + (1 - r) * x2) / 2;
                     double y = (y1 + y2) / 2;
 
                     Cantor(level + 1, x1, y1, x, y);
@@ -164,13 +166,13 @@ namespace fractal_generator.Fractals
 
                     if (devil)
                     {
-                        globalCantorList.Add(new List<int>() { (int)x, (int)y, (int)xx, (int)y });
+                        cantorList.Add(new List<int>() { (int)x, (int)y, (int)xx, (int)y });
                     }
                     Cantor(level + 1, xx, y, x2, y2);
                 }
                 else
                 {
-                    globalCantorList.Add(new List<int>() { (int)x1, (int)y1, (int)x2, (int)y2 });
+                    cantorList.Add(new List<int>() { (int)x1, (int)y1, (int)x2, (int)y2 });
                 }
             }
         }

@@ -21,7 +21,7 @@ namespace fractal_generator.Model
         public Fractal(List<String> reader)
         {
             id = Int32.Parse(reader[0]);
-            name = reader[1];
+            name = " " + reader[1]; //needed due to an space in front end 
             description = reader[2];
             thumbUrl = reader[3];
         }
@@ -61,7 +61,7 @@ namespace fractal_generator.Model
         public String getThumbUrl()
         {
             String parentPath = GetParent(Directory.GetCurrentDirectory(), "fractal_generator");
-            string[] paths = {parentPath, "Model", "Images", thumbUrl};
+            string[] paths = { parentPath, "Model", "Images", thumbUrl };
             String imagePath = Path.Combine(paths);
             return imagePath;
 
@@ -70,14 +70,14 @@ namespace fractal_generator.Model
         public String GetImageUrl(String imageUrl)
         {
             String parentPath = GetParent(Directory.GetCurrentDirectory(), "fractal_generator");
-            string[] paths = {parentPath, "Model", "Images", imageUrl};
+            string[] paths = { parentPath, "Model", "Images", imageUrl };
             String imagePath = Path.Combine(paths);
             return imagePath;
 
         }
 
         public string GetParent(string path, string parentName) //needed for thumburl
-            {
+        {
             var dir = new DirectoryInfo(path);
 
             if (dir.Parent == null)
@@ -103,20 +103,20 @@ namespace fractal_generator.Model
             return new BitmapImage(u);
         }
 
-        public  static List<Fractal> GetFractalList()
+        public static List<Fractal> GetFractalList()
         {
 
             //TODO: see the difference between string and String
-            List<List<String>> listString =  DB.ExecuteFractalListSql();
+            List<List<String>> listString = DB.ExecuteFractalListSql();
             List<Fractal> fractalList = new List<Fractal>();
-            foreach (var reader in listString )
+            foreach (var reader in listString)
             {
                 Fractal f = new Fractal(reader);
                 fractalList.Add(f);
             }
 
             return fractalList;
-            
+
         }
 
         public static List<BitmapImage> GetImagesUriList(Fractal f)
