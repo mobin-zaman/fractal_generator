@@ -6,50 +6,35 @@
         xmlns:local="clr-namespace:fractal_generator"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
-        Title="MainWindow" Height="1366" Width="768">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="15*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <DockPanel Background="Gray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5">
-            <Grid>
-                <TextBlock Background="Gray" FontSize="30" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"><Bold>Fractal</Bold></TextBlock>
-            </Grid>
+        Title="MainWindow" Height="750" Width="750">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250px"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Canvas Grid.Row="0" Background="DarkCyan">
+                <Label Foreground="White" FontSize="50" Width="250" Margin="1,1">FRACTAL</Label>
+            </Canvas>
 
-        </DockPanel>
-        <DockPanel Background="Green" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5">
-            <Grid Background="GreenYellow">
-                <ListView   x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
+            <DockPanel Grid.Row="1">
+               <Grid>
+                   <ListView   x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
 
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock xml:space="preserve" Grid.Column="0" Grid.Row="0" Text="                                                                                                    " ></TextBlock>
-                                <Image Source="{Binding ImageData}" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0"></Image>
-                                <TextBlock Text="{Binding Name}" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
-                            </Grid>
+                                <Grid Background="Gray">
+                                    <TextBlock xml:space="preserve" Grid.Row="0" Text="          " ></TextBlock>
+                                    <Image Source="{Binding ImageData}" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0"></Image>
+                                    <TextBlock Text="{Binding Name}" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
+                                </Grid>
 
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-        </DockPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </DockPanel>
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>
