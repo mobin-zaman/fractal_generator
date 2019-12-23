@@ -30,11 +30,11 @@
             </Canvas>
 
             
-                <TextBlock  Name="title" FontSize="30" Grid.Row="1" Grid.ColumnSpan="3"/>
+                <TextBlock Background="Gray"  Name="title" FontSize="30" Grid.Row="1" Grid.ColumnSpan="3"/>
                
 
                     <!-- this will be the header of the page-->
-            <TextBlock Name="description" FontSize="20" Grid.Row="2" Grid.ColumnSpan="3"/>
+            <TextBlock Background="LightGray" Name="description" FontSize="20" Grid.Row="2" Grid.ColumnSpan="3"/>
 
 
             <Image Name="img1" Grid.Row="3" Grid.Column="0" Margin="30,3,31,2"/>
