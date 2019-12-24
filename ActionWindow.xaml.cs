@@ -43,8 +43,9 @@ namespace fractal_generator
 
             if (id == 3)
             {
-                //FractalPixelGenerator.CreateJuliaSet(); FIXME: for the time being it being tested for CreateCantor(), needs to changed;
-                DrawCantorSet(new FractalPixelGenerator.CantorSet().CreateCantor());
+                //FractalPixelGenerator.CreateJuliaSet(); FIXME: for the time being it being tested for CreateCantor(), needs to changed;L
+                DrawFern(FractalPixelGenerator.Fern());
+
             }
         }
         void DrawPoint(int x, int y, int choice) //blue background, yellow middle purple dots
@@ -93,6 +94,7 @@ namespace fractal_generator
                        currentDot.Width = dotSize;
                        currentDot.Margin = new Thickness(x, y, 0, 0); // Sets the position.
                        canvas.Children.Add(currentDot);
+                       Console.WriteLine(x + " " + y);
                    });
               });
         }
@@ -208,6 +210,39 @@ namespace fractal_generator
             {
                 DrawLine(x[0], x[1], x[2], x[3]);
                 Console.WriteLine(x[0] + "+" + x[1] + "+" + x[2] + "+" + x[3]);
+            }
+        }
+
+        // public void DrawFern(List<List<int>> pixelsList)
+        //{
+        //   foreach (var x in pixelsList)
+        //  {
+        //     DrawPoint(x[0], x[1], 1);
+        //}
+        // }
+
+
+        void DrawFern(List<List<int>> pixelList)
+        {
+            DispatcherTimer t = new DispatcherTimer();
+            t.Tick += t_drawPoints;
+            t.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            t.Start();
+
+            void t_drawPoints(object sender, EventArgs e)
+            {
+                try
+                {
+                    var firstElement = pixelList[0];
+                    DrawPoint(firstElement[0], firstElement[1], 1);
+                    pixelList.RemoveAt(0);
+                }
+                catch (Exception)
+                {
+                    t.Stop();
+                }
+
+
             }
         }
     }

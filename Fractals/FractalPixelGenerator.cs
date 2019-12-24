@@ -134,10 +134,64 @@ namespace fractal_generator.Fractals
             return pixelList;
         }
 
+
+        public static List<List<int>> Fern()
+        {
+            List<List<int>> fernPixelList = new List<List<int>>();
+            int imax = 10000;
+            int left = 30;
+            int w = 300;
+            int wl = w + left;
+
+            double e1 = 0.5 * w;
+            double e2 = 0.57 * w;
+            double e3 = 0.408 * w;
+            double e4 = 0.1075 * w;
+            double f1 = 0 * w;
+            double f2 = -0.036 * w;
+            double f3 = 0.0893 * w;
+            double f4 = 0.27 * w;
+
+
+            double x = e1;
+            double y = 0;
+            for (int i = 0; i < imax; i++)
+            {
+                double r = new Random().NextDouble();
+                double xn, yn;
+                if (r < 0.02)
+                {
+                    xn = 0 * x + 0 * y + e1;
+                    yn = 0 * x + 0.27 * y + f1;
+                }
+                else if (r < 0.17)
+                {
+                    xn = -0.139 * x + 0.263 * y + e2;
+                    yn = 0.246 * x + 0.224 * y + f2;
+                }
+                else if (r < 0.3)
+                {
+                    xn = 0.17 * x - 0.215 * y + e3;
+                    yn = 0.222 * x + 0.176 * y + f3;
+                }
+                else
+                {
+                    xn = 0.781 * x + 0.034 * y + e4;
+                    yn = -0.032 * x + 0.739 * y + f4;
+                }
+
+                fernPixelList.Add(new List<int>() { left + (int)xn, wl - (int)yn });
+                x = xn;
+                y = yn;
+            }
+
+            return fernPixelList;
+        }
+
         public class CantorSet
         {
             private List<List<int>> cantorList = new List<List<int>>();
-            private int n = 20;
+            private int n = 7;
             private double r = (double)(1 / 3);
             private Boolean devil = true;
             private int left = 30;

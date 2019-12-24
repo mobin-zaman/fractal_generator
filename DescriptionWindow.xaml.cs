@@ -32,9 +32,9 @@ namespace fractal_generator
 
             var imageList = Fractal.GetImagesUriList(fractal);
 
-            img1.Source = imageList[0];
-            img2.Source = imageList[1];
-            img3.Source = imageList[2];
+            //img1.Source = imageList[0];
+            //img2.Source = imageList[1];
+            //img3.Source = imageList[2];
 
 
 
