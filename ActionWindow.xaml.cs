@@ -40,11 +40,13 @@ namespace fractal_generator
             {
                 DrawSierpinskiGasket(FractalPixelGenerator.CreateSierpinskiGasket());
             }
-
             if (id == 3)
             {
                 //FractalPixelGenerator.CreateJuliaSet(); FIXME: for the time being it being tested for CreateCantor(), needs to changed;L
-                DrawFern(FractalPixelGenerator.Fern());
+                //   DrawFern(FractalPixelGenerator.Fern());// FERN IS DONE!
+                //  DrawCellularAutomata(FractalPixelGenerator.CelularAutomata());
+                DrawLorrentz(FractalPixelGenerator.GenerateLorrentz());
+
 
             }
         }
@@ -112,6 +114,7 @@ namespace fractal_generator
             line.StrokeThickness = 1;
             canvas.Children.Add(line);
         }
+
 
         void DrawSierpinskiGasket(List<List<int>> pixelList)
         {
@@ -245,6 +248,56 @@ namespace fractal_generator
 
             }
         }
+
+        void DrawCellularAutomata(List<List<int>> pixelList)
+        {
+            DispatcherTimer t = new DispatcherTimer();
+            t.Tick += t_drawPoints;
+            t.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            t.Start();
+
+            void t_drawPoints(object sender, EventArgs e)
+            {
+                try
+                {
+                    var firstElement = pixelList[0];
+                    DrawPoint(firstElement[0], firstElement[1], 1);
+                    pixelList.RemoveAt(0);
+                }
+                catch (Exception)
+                {
+                    t.Stop();
+                }
+
+
+            }
+        }
+
+        void DrawLorrentz(List<List<int>> pixelList)
+        {
+            DispatcherTimer t = new DispatcherTimer();
+            t.Tick += t_drawPoints;
+            t.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            t.Start();
+
+            void t_drawPoints(object sender, EventArgs e)
+            {
+                try
+                {
+                    var firstElement = pixelList[0];
+                    DrawLine(firstElement[0], firstElement[1], firstElement[2], firstElement[3]);
+                    Console.WriteLine(firstElement[0] + " " + firstElement[1] + " " + firstElement[2] + " " + firstElement[3]);
+                    pixelList.RemoveAt(0);
+                }
+                catch (Exception)
+                {
+                    t.Stop();
+                }
+
+
+            }
+        }
+
     }
 }
 

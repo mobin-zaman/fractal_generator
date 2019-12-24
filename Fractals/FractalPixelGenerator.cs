@@ -222,6 +222,7 @@ namespace fractal_generator.Fractals
                     {
                         cantorList.Add(new List<int>() { (int)x, (int)y, (int)xx, (int)y });
                     }
+
                     Cantor(level + 1, xx, y, x2, y2);
                 }
                 else
@@ -229,22 +230,199 @@ namespace fractal_generator.Fractals
                     cantorList.Add(new List<int>() { (int)x1, (int)y1, (int)x2, (int)y2 });
                 }
             }
+
         }
+
+        public static List<List<int>> CelularAutomata()
+        {
+            List<List<int>> pixelList = new List<List<int>>();
+            int left = 30;
+            int w = 300;
+            int n = 2;
+
+            int[] c = new int[1 + w / 2];
+            int[] lut = { 1, 0, 0, 1 };
+
+            for (int x = 1; x <= w / 2; x++)
+            {
+                c[x] = 0;
+            }
+            c[7] = 1; c[15] = 1; c[45] = 1;
+            for (int x = 1; x <= w / 2; x++)
+            {
+                if (c[x] != 0)
+                {
+                    pixelList.Add(new List<int>() { 2 * x + left, 2 + left });
+                }
+            }
+            if (n >= 2)
+            {
+                for (int y = 2; y <= w / 2; y++)
+                {
+                    int c0 = 0;
+                    for (int x = 1; x <= w / 2; x++)
+                    {
+                        int c1 = c[x];
+                        c[x] = (c0 + c1) % n;
+                        c0 = c1;
+                        if (c[x] != 0)
+                        {
+                            pixelList.Add(new List<int>() { 2 * x + left, 2 * y + left });
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int y = 2; y <= w / 2; y++)
+                {
+                    int c0 = 0;
+                    for (int x = 1; x <= w / 2; x++)
+                    {
+                        int c1 = c[x];
+                        c[x] = lut[2 * c0 + c1];
+                        c0 = c1;
+                        if (c[x] != 0)
+                        {
+                            pixelList.Add(new List<int>() { 2 * x + left, 2 * y + left });
+                        }
+                    }
+                }
+            }
+
+            return pixelList;
+        }
+        public static double DegToRad(double pfDeg)
+        {
+            return pfDeg / 180.0 * Math.PI;
+        }
+
+        public double RadToDeg(double pfRad)
+        {
+            return pfRad * 180.0 / Math.PI;
+        }
+        public static List<List<int>> GenerateLorrentz()
+        {
+            List<List<int>> pixelList = new List<List<int>>();
+            int iWidth = 600;
+            int iHeight = 400;
+            int iDim = 3;
+
+            double rho, sigma, beta;
+            double iterations;
+            double x, y, z, d0_x, d0_y, d0_z, d1_x, d1_y, d1_z, d2_x, d2_y, d2_z;
+            double d3_x, d3_y, d3_z, xt, yt, zt, dt, dt2, x_angle, y_angle, z_angle;
+            double sx, sy, sz, cx, cy, cz, temp_x, temp_y, old_y;
+            int i, row, col, old_row, old_col;
+            int color = 0;
+
+            iterations = 8000;
+            rho = 28;
+            sigma = 10;
+            beta = 8.0 / 3.0;
+
+            x_angle = 45;
+            y_angle = 0;
+            z_angle = 90;
+            x_angle = DegToRad(x_angle);
+            sx = Math.Sin(x_angle);
+            cx = Math.Cos(x_angle);
+            y_angle = DegToRad(y_angle);
+            sy = Math.Sin(y_angle);
+            cy = Math.Cos(y_angle);
+            z_angle = DegToRad(z_angle);
+            sz = Math.Sin(z_angle);
+            cz = Math.Cos(z_angle);
+
+
+            x = 0;
+            y = 1;
+            z = 0;
+
+            if (iDim == 3)
+            {
+                old_col = (int)Math.Round(y * 9.0);
+                old_row = (int)Math.Round(350.0 - 6.56 * z);
+                // g.DrawLine(new Pen(oColor[0]), 0, 348, 638, 348);
+                // g.DrawLine(new Pen(oColor[0]), 320, 2, 320, 348);
+                // g.DrawLine(new Pen(oColor[0]), 320, 348, 648, 140);
+            }
+            else
+            {
+                old_col = (int)Math.Round(y * 9.0 + 320.0);
+                old_row = (int)Math.Round(350.0 - 6.56 * z);
+                pixelList.Add(new List<int>() { 0, 348, 639, 348 });
+                pixelList.Add(new List<int>() { 320, 2, 320, 348 });
+            }
+            dt = 0.01;
+            dt2 = dt / 2.0;
+            for (i = 0; i <= iterations; i++)
+            {
+                d0_x = sigma * (y - x) * dt2;
+                d0_y = (-x * z + rho * x - y) * dt2;
+                d0_z = (x * y - beta * z) * dt2;
+                xt = x + d0_x;
+                yt = y + d0_y;
+                zt = z + d0_z;
+                d1_x = (sigma * (yt - xt)) * dt2;
+                d1_y = (-xt * zt + rho * xt - yt) * dt2;
+                d1_z = (xt * yt - beta * zt) * dt2;
+                xt = x + d1_x;
+                yt = y + d1_y;
+                zt = z + d1_z;
+                d2_x = (sigma * (yt - xt)) * dt;
+                d2_y = (-xt * zt + rho * xt - yt) * dt;
+                d2_z = (xt * yt - beta * zt) * dt;
+                xt = x + d2_x;
+                yt = y + d2_y;
+                zt = z + d2_z;
+                d3_x = (sigma * (yt - xt)) * dt2;
+                d3_y = (-xt * zt + rho * xt - yt) * dt2;
+                d3_z = (xt * yt - beta * zt / 3) * dt2;
+                old_y = y;
+                x = x + (d0_x + d1_x + d1_x + d2_x + d3_x) * 0.33333333;
+                y = y + (d0_y + d1_y + d1_y + d2_y + d3_y) * 0.33333333;
+                z = z + (d0_z + d1_z + d1_z + d2_z + d3_z) * 0.33333333;
+
+                if (iDim == 3)
+                {
+                    temp_x = x * cx + y * cy + z * cz;
+                    temp_y = x * sx + y * sy + z * sz;
+                    col = (int)Math.Round(temp_x * 8.0 + 320.0);
+                    row = (int)Math.Round(350.0 - temp_y * 5.0);
+                }
+                else
+                {
+                    col = (int)Math.Round(y * 9.0 + 320.0);
+                    row = (int)Math.Round(350 - 6.56 * z);
+                }
+                if (col < 320)
+                {
+                    if (old_col >= 320)
+                    {
+                        color++;
+                        color = color % 16;
+                    }
+                }
+                if (col > 320)
+                {
+                    if (old_col <= 320)
+                    {
+                        color++;
+                        color = color % 16;
+                    }
+                }
+                pixelList.Add(new List<int>() { old_col, old_row, col, row });
+                old_row = row;
+                old_col = col;
+            }
+
+            return pixelList;
+        }
+
+
     }
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
 
 
 
