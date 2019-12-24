@@ -45,7 +45,8 @@ namespace fractal_generator
                 //FractalPixelGenerator.CreateJuliaSet(); FIXME: for the time being it being tested for CreateCantor(), needs to changed;L
                 //   DrawFern(FractalPixelGenerator.Fern());// FERN IS DONE!
                 //  DrawCellularAutomata(FractalPixelGenerator.CelularAutomata());
-                DrawLorrentz(FractalPixelGenerator.GenerateLorrentz());
+                //DrawLorrentz(FractalPixelGenerator.GenerateLorrentz());
+                DrawKoch(FractalPixelGenerator.GenerateKoch());
 
 
             }
@@ -297,6 +298,33 @@ namespace fractal_generator
 
             }
         }
+
+        void DrawKoch(List<List<int>> pixelList)
+        {
+            DispatcherTimer t = new DispatcherTimer();
+            t.Tick += t_drawPoints;
+            t.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            t.Start();
+
+            void t_drawPoints(object sender, EventArgs e)
+            {
+                try
+                {
+                    var firstElement = pixelList[0];
+                    DrawLine(firstElement[0], firstElement[1], firstElement[2], firstElement[3]);
+                    Console.WriteLine(firstElement[0] + " " + firstElement[1] + " " + firstElement[2] + " " + firstElement[3]);
+                    pixelList.RemoveAt(0);
+                }
+                catch (Exception)
+                {
+                    t.Stop();
+                }
+
+
+            }
+        }
+
+
 
     }
 }

@@ -420,8 +420,46 @@ namespace fractal_generator.Fractals
             return pixelList;
         }
 
+        public static List<List<int>> GenerateKoch()
+        {
+            List<List<int>> pixelList = new List<List<int>>();
+
+            double r = 0.29;
+            int n = 5;
+
+            koch(1, 30, 190, 30 + 300, 190);
+
+            void koch(int level, double x1, double y1, double x2, double y2)
+            {
+                if (level < n)
+                {
+                    double nx = (2 * x1 + x2) / 3;
+                    double ny = (2 * y1 + y2) / 3;
+                    koch(level + 1, x1, y1, nx, ny);
+                    double ox = nx;
+                    double oy = ny;
+                    nx = (x1 + x2) / 2 - r * (y1 - y2);
+                    ny = (y1 + y2) / 2 + r * (x1 - x2);
+                    koch(level + 1, ox, oy, nx, ny);
+                    ox = nx;
+                    oy = ny;
+                    nx = (x1 + 2 * x2) / 3;
+                    ny = (y1 + 2 * y2) / 3;
+                    koch(level + 1, ox, oy, nx, ny);
+                    koch(level + 1, nx, ny, x2, y2);
+                }
+                else
+                {
+                    pixelList.Add(new List<int>() { (int)x1, (int)y1, (int)x2, (int)y2 });
+                }
+            }
+
+            return pixelList;
+        }
+
 
     }
+
 }
 
 
