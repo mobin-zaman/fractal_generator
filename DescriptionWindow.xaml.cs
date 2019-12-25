@@ -46,7 +46,8 @@ namespace fractal_generator
             new ActionWindow(fractal).ShowDialog();
         }
 
-        private void ActionButton_OnClick2_(object sender, RoutedEventArgs e)
+
+        private void ActionButton_OnClick3_(object sender, RoutedEventArgs e)
         {
             new MainWindow().ShowDialog();
         }

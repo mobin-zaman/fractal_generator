@@ -40,7 +40,9 @@
             <Image Name="img1" Grid.Row="3" Grid.Column="0" Margin="30,3,31,2"/>
             <Image Name="img2" Grid.Row="3" Grid.Column="1" Margin="31,3,30,2"/>
             <Image Name="img3" Grid.Row="3" Grid.Column="2" Margin="30,3,31,2"/>
-            <Button Name="actionButton" Content="See in Action" Click="ActionButton_OnClick_" Grid.Row="4" Grid.ColumnSpan="2"/>
+
+            <Button Name="actionButton" Content="See in Action" Click="ActionButton_OnClick_" Grid.Row="4" Grid.Column="0"/>
+            <Button Name="backButton" Content="Back" Click="ActionButton_OnClick3_" Grid.Row="4" Grid.Column="2"/>
         </Grid>
     </ScrollViewer>
 </Window>

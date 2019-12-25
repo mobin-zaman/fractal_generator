@@ -30,6 +30,7 @@ namespace fractal_generator.Database
                     item.Add(reader.GetString(1));
                     item.Add(reader.GetString(2));
                     item.Add(reader.GetString(3));
+                    item.Add(reader.GetString(4));
 
                     listString.Add(item);
                 }

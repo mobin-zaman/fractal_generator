@@ -16,6 +16,7 @@ namespace fractal_generator.Model
         private String name;
         private String description;
         private String thumbUrl;
+        private String code;
         private BitmapImage imageData;
 
         public Fractal(List<String> reader)
@@ -24,6 +25,7 @@ namespace fractal_generator.Model
             name = " " + reader[1]; //needed due to an space in front end 
             description = reader[2];
             thumbUrl = reader[3];
+            code = reader[4];
         }
 
         public int Id
@@ -47,6 +49,12 @@ namespace fractal_generator.Model
         public BitmapImage ImageData
         {
             get { return this.LoadImage(); }
+        }
+
+        public String Code
+        {
+            get { return this.code; }
+            set { this.code = value; }
         }
 
 
