@@ -7,43 +7,39 @@
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         mc:Ignorable="d"
         
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="746" Width="1000">
     <ScrollViewer>
-        <Grid>
+        <Grid Height="970">
             <Grid.RowDefinitions>
-                <RowDefinition Height="150px"/>
-                <RowDefinition Height="650px"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="600px"/>
-                <ColumnDefinition Width="250px"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
-                <Canvas Grid.Row="0" Grid.ColumnSpan="2" Background="DarkCyan">
+
+            <Canvas Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="DarkCyan">
                 <Label Foreground="White" FontSize="50" Width="250" Margin="1,1">FRACTAL</Label>
             </Canvas>
-            <Canvas Background="Gray" Grid.Row="1" Grid.Column="0">
-            </Canvas>
+            <Canvas Background="Gray" Grid.Row="1" Grid.Column="0"></Canvas>
 
-            <WrapPanel Background="Gray" Grid.Row="1" Grid.Column="1">
-               <Grid>
-                   <ListView Background="Gray"  x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick" Margin="-496,10,-167,-270" RenderTransformOrigin="0.795,0.629">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-
-                                <Grid Background="Gray">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="200px"/>
-                                        <RowDefinition Height="40px"/>
-                                    </Grid.RowDefinitions>
-                                    
-                                    <Image Source="{Binding ImageData}" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0"></Image>
-                                    <TextBlock Text="{Binding Name}" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
-                                </Grid>
-
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
+            <WrapPanel Orientation="Horizontal" Background="Gray" Grid.Row="1" Grid.Column="1">
+                <ListView Background="LightGray" x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
+                                <Image Source="{Binding ImageData}" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                                <TextBlock Text="{Binding Name}" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </WrapPanel>
 
         </Grid>
