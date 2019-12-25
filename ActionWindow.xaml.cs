@@ -43,13 +43,28 @@ namespace fractal_generator
             if (id == 3)
             {
                 //FractalPixelGenerator.CreateJuliaSet(); FIXME: for the time being it being tested for CreateCantor(), needs to changed;L
-                //   DrawFern(FractalPixelGenerator.Fern());// FERN IS DONE!
-                //  DrawCellularAutomata(FractalPixelGenerator.CelularAutomata());
-                //DrawLorrentz(FractalPixelGenerator.GenerateLorrentz());
-                DrawKoch(FractalPixelGenerator.GenerateKoch());
+                DrawLorrentz(FractalPixelGenerator.GenerateLorrentz());
 
 
             }
+
+            if (id == 4)
+            {
+                DrawFern(FractalPixelGenerator.Fern());// FERN IS DONE!
+            }
+
+            if (id == 5)
+            {
+                DrawCellularAutomata(FractalPixelGenerator.CelularAutomata());
+
+            }
+
+            if (id == 6)
+            {
+                DrawKoch(FractalPixelGenerator.GenerateKoch());
+
+            }
+
         }
         void DrawPoint(int x, int y, int choice) //blue background, yellow middle purple dots
         {
