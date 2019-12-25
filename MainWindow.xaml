@@ -12,11 +12,11 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150px"/>
-                <RowDefinition Height="300px"/>
+                <RowDefinition Height="650px"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150px"/>
-                <ColumnDefinition Width="650px"/>
+                <ColumnDefinition Width="600px"/>
+                <ColumnDefinition Width="250px"/>
             </Grid.ColumnDefinitions>
                 <Canvas Grid.Row="0" Grid.ColumnSpan="2" Background="DarkCyan">
                 <Label Foreground="White" FontSize="50" Width="250" Margin="1,1">FRACTAL</Label>
@@ -26,11 +26,11 @@
 
             <WrapPanel Background="Gray" Grid.Row="1" Grid.Column="1">
                <Grid>
-                   <ListView Background="Gray"  x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick">
+                   <ListView Background="Gray"  x:Name="lv" MouseDoubleClick="Lv_OnMouseDoubleClick" Margin="-496,10,-167,-270" RenderTransformOrigin="0.795,0.629">
                         <ListView.ItemTemplate>
                             <DataTemplate>
 
-                                <Grid Background="Green">
+                                <Grid Background="Gray">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="200px"/>
                                         <RowDefinition Height="40px"/>
